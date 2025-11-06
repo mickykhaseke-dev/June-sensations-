@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owner Dashboard | June's Sensation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Owner Dashboard</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="booking.html">Bookings</a>
+    </nav>
+  </header>
+
+  <section class="dashboard">
+    <h2>Daily Earnings Tracker</h2>
+
+    <form id="earningsForm">
+      <input type="number" id="dailyEarnings" placeholder="Enter today's earnings (KSh)" required />
+      <button type="submit" class="btn">Save Earnings</button>
+    </form>
+
+    <div class="results">
+      <p id="totalBalance">Total Balance: KSh 0</p>
+      <p id="savings">Savings (10%): KSh 0</p>
+      <p id="message"></p>
+
+      <div class="btn-group">
+        <button id="withdrawDailyBtn" class="btn">Withdraw Daily Balance</button>
+        <button id="withdrawSavingsBtn" class="btn">Withdraw Savings</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 June's Sensation</p>
+  </footer>
+
+  <script>
+    let totalBalance = 0;
+    let savings = 0;
+
+    document.getElementById('earningsForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const dailyEarnings = Number(document.getElementById('dailyEarnings').value);
+      const dailySave = dailyEarnings * 0.10;
+      const dailyNet = dailyEarnings - dailySave;
+
+      totalBalance += dailyNet;
+      savings += dailySave;
+
+      document.getElementById('totalBalance').textContent = `Total Balance: KSh ${totalBalance.toFixed(2)}`;
+      document.getElementById('savings').textContent = `Savings (10%): KSh ${savings.toFixed(2)}`;
+      document.getElementById('message').textContent = '✅ 10% saved automatically and added to savings.';
+      e.target.reset();
+    });
+
+    document.getElementById('withdrawDailyBtn').addEventListener('click', () => {
+      if (totalBalance > 0) {
+        alert(`💵 Withdrawn: KSh ${totalBalance.toFixed(2)} from your daily balance.`);
+        totalBalance = 0;
+        document.getElementById('totalBalance').textContent = `Total Balance: KSh ${totalBalance.toFixed(2)}`;
+      } else {
+        alert('No daily balance available to withdraw.');
+      }
+    });
+
+    document.getElementById('withdrawSavingsBtn').addEventListener('click', () => {
+      const today = new Date();
+      if (today.getDate() === 29) {
+        if (savings > 0) {
+          alert(`🎉 Withdrawn: KSh ${savings.toFixed(2)} from your savings.`);
+          savings = 0;
+          document.getElementById('savings').textContent = `Savings (10%): KSh ${savings.toFixed(2)}`;
+        } else {
+          alert('No savings available to withdraw.');
+        }
+      } else {
+        alert('❌ Withdrawals of savings are only allowed on the 29th of each month.');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>June's Sensation | Beauty & Fragrance Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>June's Sensation</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="booking.html">Book Service</a>
+      <a href="owner.html">Owner Dashboard</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="bear-bg.jpg" alt="Bear background" class="background" />
+    <div class="overlay">
+      <h2>Experience Beauty, Elegance & Sensation</h2>
+      <p>We specialize in Nails, Perfumes, and Body Splash</p>
+      <a href="booking.html" class="btn">Book Your Session</a>
+    </div>
+  </section>
+
+  <section class="products">
+    <h2>Our Featured Services</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="nails.jpg" alt="Nails" />
+        <h3>Nail Studio</h3>
+        <p>Luxurious nail care and art that leaves you glowing.</p>
+      </div>
+      <div class="card">
+        <img src="perfume.jpg" alt="Perfume" />
+        <h3>Perfumes</h3>
+        <p>Signature scents that make your presence unforgettable.</p>
+      </div>
+      <div class="card">
+        <img src="splash.jpg" alt="Body Splash" />
+        <h3>Body Splash</h3>
+        <p>Freshness that lasts all day long.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="jobs">
+    <h2>Enquire About Job Vacancies</h2>
+    <form id="jobForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+      <textarea id="message" placeholder="Your enquiry..." required></textarea>
+      <button type="submit" class="btn">Send Enquiry</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 June's Sensation. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('jobForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you for your enquiry! We will contact you soon.');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Service | June's Sensation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Book a Service</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="owner.html">Owner Dashboard</a>
+    </nav>
+  </header>
+
+  <section class="dashboard">
+    <h2>Online Booking & Payment</h2>
+    <form id="bookingForm">
+      <input type="text" id="custName" placeholder="Your Full Name" required />
+      <input type="tel" id="custPhone" placeholder="Phone (254...)" required />
+      <select id="service" required>
+        <option value="">-- Select Service --</option>
+        <option value="Nail Studio">Nail Studio</option>
+        <option value="Perfume">Perfume</option>
+        <option value="Body Splash">Body Splash</option>
+      </select>
+      <input type="date" id="date" required />
+      <input type="time" id="time" required />
+      <input type="number" id="amount" placeholder="Amount (KSh)" required />
+      <button type="submit" class="btn">Pay with M-Pesa</button>
+    </form>
+
+    <div id="receipt" style="display:none; margin-top: 30px;">
+      <h3>Payment Receipt</h3>
+      <p id="rName"></p>
+      <p id="rService"></p>
+      <p id="rAmount"></p>
+      <p id="rDate"></p>
+      <button id="printReceipt" class="btn">Print Receipt</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 June's Sensation</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('custName').value;
+      const service = document.getElementById('service').value;
+      const amount = document.getElementById('amount').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      alert('✅ M-Pesa payment simulated successfully!');
+      document.getElementById('receipt').style.display = 'block';
+      document.getElementById('rName').textContent = `Customer: ${name}`;
+      document.getElementById('rService').textContent = `Service: ${service}`;
+      document.getElementById('rAmount').textContent = `Amount: KSh ${amount}`;
+      document.getElementById('rDate').textContent = `Booking: ${date} at ${time}`;
+    });
+
+    document.getElementById('printReceipt').addEventListener('click', () => {
+      const doc = new jspdf.jsPDF();
+      doc.text("June's Sensation Receipt", 20, 20);
+      doc.text(document.getElementById('rName').textContent, 20, 40);
+      doc.text(document.getElementById('rService').textContent, 20, 50);
+      doc.text(document.getElementById('rAmount').textContent, 20, 60);
+      doc.text(document.getElementById('rDate').textContent, 20, 70);
+      doc.save("receipt.pdf");
+    });
+  </script>
+</body>
+</html>
